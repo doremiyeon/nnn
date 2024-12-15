@@ -4544,6 +4544,8 @@ static bool load_session(const char *sname, char **path, char **lastdir, char **
 	*lastname = g_ctx[cfg.curctx].c_name;
 	set_sort_flags('\0'); /* Set correct sort options */
 	xstrsncpy(curssn, sname ? sname : "@", NAME_MAX);
+	/* restore correct filter function */
+	filterfn = cfg.regex ? &visible_re : &visible_str;
 	status = TRUE;
 
 END:
